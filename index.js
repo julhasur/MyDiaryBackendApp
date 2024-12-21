@@ -28,7 +28,13 @@ const express=require('express');
     //       res.render("index", { files: files }); // Corrected syntax
     //     });
     //   });
-
+    app.get("/files/:filename", function (req, res) {
+        const filename = req.params.filename; // Get the filename from the route
+        fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, filedata) {
+           
+          res.render('show',{filename: req.params.filename, filedata:filedata});
+        })
+    });
       app.post("/create", function (req, res) {
        console.log(req.body);
        fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`,req.body.details, function (err) {
