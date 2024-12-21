@@ -35,12 +35,27 @@ const express=require('express');
           res.render('show',{filename: req.params.filename, filedata:filedata});
         })
     });
+//edit page option
+    app.get("/edit/:filename", function (req, res) {
+       res.render("edit",{filename: req.params.filename});
+    });
+
+    //updated file
+    app.post("/edit", function (req, res) {
+   console.log(req.body);
+   fs.rename(`./files/${req.body.previous}`,`./files/${req.body.new}`, function (err) {
+       res.redirect("/");
+    })
+     });
+
+    //create new file
       app.post("/create", function (req, res) {
        console.log(req.body);
        fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`,req.body.details, function (err) {
            res.redirect("/");
        })
       });
+
       
       app.listen(3000, function () {
           console.log("Server started");

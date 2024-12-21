@@ -20,17 +20,20 @@
     </div>
   
    <div class="tasks flex flex-wrap gap-4 p-10">
-    <% if (files.length > 0) { %>
-      <% files.forEach(function (val) { %>
-        <div class="task w-72 px-3 py-2 mb-4 bg-zinc-800">
-          <h1 class="text-white text-xl tracking-tighter"><%= val %></h1>
-          <a class="text-white inline-block mt-2" href="/files/<%= val %> ">Read More</a>
-        </div>
-      <% }); %>
-    <% } else { %>
-      <h3 class="text-white">No tasks yet</h3>
-    <% } %>
-    
+      <% if (files.length > 0) { %>
+        <% files.forEach(function (val) { %>
+              <div class="task w-72 px-3 py-2 mb-4 bg-zinc-800">
+                <h1 class="text-white text-xl tracking-tighter"><%= val %></h1>
+                <div class="flex justify-between items-center mt-2">
+                <a class="text-white inline-block " href="/files/<%= val %> ">Read More</a>
+                <a class="text-zinc-600 " href="/edit/<%= val %>">Edit File Name</a>
+              </div>
+            </div>  
+        <% }); %>
+      <% } else { %>
+        <h3 class="text-white">No tasks yet</h3>
+      <% } %>
+      
    </div>
 </div>
 
